@@ -22,6 +22,10 @@ class User extends Authenticatable
         'email',
         'password',
         'admin_level',
+        'comment',
+        'department',
+        'image_path',
+        'ordered'
     ];
 
     /**
@@ -42,4 +46,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
+    public function order()
+    {
+        return $this->hasOne('App\Models\Order');
+    }
+    public function calendars()
+    {
+        return $this->hasMany(Calendar::class);
+    }
 }

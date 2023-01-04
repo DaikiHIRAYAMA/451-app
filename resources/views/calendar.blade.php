@@ -1,44 +1,54 @@
 @extends('adminlte::page')
 
+<link rel="stylesheet" href="{{ asset('/css/calendar.css')  }}" >
+<header>
+<?php
 
-@section('content_header')
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
-@stop
+// 使用する変数を空文字で初期化
+$bgColor = ''; // 背景色
+$color   = ''; // 文字色
+$size    = '';
+
+//午前・午後でスタイルを変更する
+
+?>
+<style>
+#time {
+        /* PHP の変数を echo する */
+        background-color: <?=$bgColor;?>;
+        color: <?=$color;?>;
+        width: 120px;
+        height: 25px;
+        border-radius: 5px;
+        margin: 20px;
+        padding: 10px;
+        text-align: center;
+    }
+</style>
+</header>
+
+
 @section('content')
-@foreach($calendars as $calendar)
-@foreach($users as $user)
-<br>
-<div class="card mb-3" style="max-width: full;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." alt="...">TODO:change
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-8">
+    <div class="card">
+    <div class="card-header">{{ $calendar->getTitle() }}</div>
+    <div class="card-body">
+			{!! $calendar->render() !!}
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><?php echo $user->name ?>
-        <small class="text-muted"><?php echo $user->department ?></small>
-        </h5>
-        <p class="card-text"><?php echo $user->comment ?></p>
-        <p class="card-text"><small class="text-muted"><?php echo $calendar->update ?></small></p>
-      </div>
     </div>
-  </div>
 </div>
+</div>
+</div>
+@endsection
 
-@endforeach
-@endforeach
-
-@stop
 @section('footer')
 
 <div class="d-grid gap-2 col-6 mx-auto text-center">
 
-<a href="{{ url('/calendar') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
-<button class="btn btn-dark" type="button">calendar</button>
+<a href="{{ route('dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+<button class="btn btn-dark" type="button">Dashboard</button>
 </a>
 
 <br>
@@ -51,7 +61,7 @@
             <div class="modal-content">
                 <div class="modal-footer">
                     
-                    <?php $orderCheck = Auth::user()->ordered ?>
+                    <?php $orderCheck = Auth::user()->ordered; ?>
 
                     @if ($orderCheck == 1)
                     <div class="modal-body text-center">
@@ -78,5 +88,4 @@
         </div>
     </div>
 @stop
-
-
+@

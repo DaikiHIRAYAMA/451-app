@@ -2,11 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class TagsController extends Controller
 {
+
+    public function createTag(Request $request){
+
+        //タグの作成
+        $tag = new Tag;
+        $tag->hashtag = $request->hashtag;
+        $tag->save();
+
+        //タグをユーザーに紐付ける
+        $user = get_current_user();
+        $user->tags()->attach($tag->hashtag);
+    }
+    public function attachTag(Request $request){
+        $tag_id = $request->id;
+        $user->tags()->attach($tag_id);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,9 +61,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $users = User::with('tags')->get();
-        //dd($posts);
-        return view('home');
+        //
     }
 
     /**

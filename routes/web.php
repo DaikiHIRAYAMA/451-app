@@ -18,9 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/calendar', 'App\Http\Controllers\CalendarController@show')
+->name('calendar');
+
+Route::get('/coffee_break', 'App\HttP\Controllers\OrderController@update');
+Route::post('/coffee_break', 'App\HttP\Controllers\OrderController@update');
+
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')
+->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

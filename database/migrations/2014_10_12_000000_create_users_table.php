@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->integer('admin_level',0);
             $table->timestamps();
+            $table->boolean('ordered')->default("0");
             $table->string('comment',100);
             $table->integer('department');
             $table->string('image_path');
