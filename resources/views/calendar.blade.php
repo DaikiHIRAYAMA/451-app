@@ -2,26 +2,11 @@
 
 <link rel="stylesheet" href="{{ asset('/css/calendar.css')  }}" >
 <header>
-<?php
-
-// 使用する変数を空文字で初期化
-$bgColor = ''; // 背景色
-$color   = ''; // 文字色
-$size    = '';
-
-//午前・午後でスタイルを変更する
-
-?>
 <style>
-#time {
+#check {
         /* PHP の変数を echo する */
-        background-color: <?=$bgColor;?>;
-        color: <?=$color;?>;
-        width: 120px;
-        height: 25px;
-        border-radius: 5px;
-        margin: 20px;
-        padding: 10px;
+        background-color: purple;
+        color: purple;
         text-align: center;
     }
 </style>
@@ -34,7 +19,7 @@ $size    = '';
 <div class="col-md-8">
     <div class="card">
     <div class="card-header">{{ $calendar->getTitle() }}</div>
-    <div class="card-body">
+    <div class="card-body" id="">
 			{!! $calendar->render() !!}
     </div>
     </div>
@@ -88,4 +73,3 @@ $size    = '';
         </div>
     </div>
 @stop
-@

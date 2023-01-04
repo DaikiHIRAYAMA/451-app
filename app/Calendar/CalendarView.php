@@ -47,8 +47,9 @@ class CalendarView {
 		foreach($days as $day){
 		$html[] = '<td class="'.$day->getClassName().'">';
 		$html[] = $day->render();
-		$html[] = '</td>';
 
+		//stampの実装方法がわからない
+		$html[] = '</td>';
 		}
 		$html[] = '</tr>';
 		}
