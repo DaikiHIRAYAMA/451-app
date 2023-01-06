@@ -3,7 +3,6 @@
 namespace App\Calendar;
 
 use Carbon\Carbon;
-
 class CalendarView {
 
 	private $carbon;
@@ -40,17 +39,27 @@ class CalendarView {
 		$html[] = '<tbody>';
 
 		$weeks = $this->getWeeks();
+
+		//週の出力
 		foreach($weeks as $week){
 		$html[] = '<tr class="'.$week->getClassName().'">';
 		$days = $week->getDays();
+		$stamps = $week->getStamps();
 		
+		//日の出力
 		foreach($days as $day){
 		$html[] = '<td class="'.$day->getClassName().'">';
 		$html[] = $day->render();
-
-		//stampの実装方法がわからない
 		$html[] = '</td>';
 		}
+
+		foreach($stamps as $stamp){
+		$html[] = '<td>';
+		$html[] = $stamp->stamp_render();
+		$html[] = '</td>';
+		}
+
+
 		$html[] = '</tr>';
 		}
 		$html[] = '</tbody>';

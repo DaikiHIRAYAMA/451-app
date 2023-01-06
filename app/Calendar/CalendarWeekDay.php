@@ -26,32 +26,7 @@ class CalendarWeekDay {
 	return '<p class="day">' . $j . '</p>';
 	}
 	
-
-	function stamp()
-	{
-		$j = $this->carbon->format("j");//数字
-		return '<p class="day check">' . $j . '</p>';
-	}
-	function getStampDays(){
-
-		$stampdays = [];
-
-		//開始日〜終了日
-		$startDay = 1;
-		$lastDay = 31;
-
-		while($startDay <= $lastDay){
-
-			$days = Calendar::where('user_id', Auth::id());//->format('j');
-			foreach($days as $day){
-				$stamp = $day->drink_day()->carbon->format('j');
-				if($startDay == $stamp){
-					$stampdays[] = $day;
-				}
-			}
-			$startDay++;
-		}
-		
-		return $stampdays;
+	function stamp_render(){
+		return '<p class="day">' . $this->carbon->format("j") . '</p>';
 	}
 }
