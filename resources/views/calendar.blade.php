@@ -45,8 +45,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-footer">
-                    
-                    <?php $orderCheck = Auth::user()->ordered; ?>
 
                     @if ($orderCheck == 1)
                     <div class="modal-body text-center">
@@ -63,10 +61,12 @@
                     <button type="button" class="btn btn-default text-center" data-dismiss="modal">閉じる</button>
                     <a>
 
-                    <a href="{{ url('/coffee_break') }}" method="POST" class="text-sm text-gray-700 dark:text-gray-500 underline">
-                    <button class="btn btn-dark" type="button" >Coffee Break</button>
+                    <form method="post" action="{{ route('update_coffee_break') }}">
+                        @csrf
+                        <input type="hidden" name="flag" value=1 id="flag" />
+                        <button type="submit" class="btn btn-dark">保存</button>
+					</form>
 
-                    </a>
                     @endif
                 </div>
             </div>

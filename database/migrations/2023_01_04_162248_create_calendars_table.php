@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
-            $table->date('drink_day')->nullable();
+            $table->integer("flag")->default(0);
         });
     }
 

@@ -9,6 +9,7 @@
     </x-slot>
 @stop
 @section('content')
+
 @foreach($calendars as $calendar)
 @foreach($users as $user)
 <br>
@@ -37,7 +38,7 @@
 
 <div class="d-grid gap-2 col-6 mx-auto text-center">
 
-<a href="{{ url('/calendar') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
+<a href="{{ route('calendar') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">
 <button class="btn btn-dark" type="button">calendar</button>
 </a>
 
@@ -50,8 +51,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-footer">
-                    
-                    <?php $orderCheck = Auth::user()->ordered ?>
 
                     @if ($orderCheck == 1)
                     <div class="modal-body text-center">

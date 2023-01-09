@@ -4,6 +4,7 @@ namespace App\Calendar;
 use Carbon\Carbon;
 use App\Models\Calendar;
 use Illuminate\Support\Facades\Auth;
+use App\Calendar\CalendarWeekDay;
 
 
 class CalendarWeek
@@ -118,6 +119,9 @@ class CalendarWeek
 				$stamps[] = $day;
 			}
 		}
-		return $stamps;
+		//return $stamps,$drinks;
+	//	return $stamps;
+		return $drinks;
+
 	}
 }

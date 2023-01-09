@@ -21,8 +21,9 @@ Route::get('/', function () {
 Route::get('/calendar', 'App\Http\Controllers\CalendarController@show')
 ->name('calendar');
 
-Route::get('/coffee_break', 'App\HttP\Controllers\OrderController@update');
-Route::post('/coffee_break', 'App\HttP\Controllers\OrderController@update');
+Route::post('/coffee_break', 'App\HttP\Controllers\OrderController@update')->name("update_coffee_break");
+Route::get('/coffee_break', 'App\HttP\Controllers\OrderController@form')->name("form_coffee_break");
+
 
 Route::get('/dashboard', 'App\Http\Controllers\DashboardController@dashboard')
 ->middleware(['auth', 'verified'])->name('dashboard');

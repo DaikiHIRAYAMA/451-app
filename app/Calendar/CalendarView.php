@@ -21,6 +21,9 @@ class CalendarView {
 	 * カレンダーを出力する
 	 */
 	function render(){
+
+		//$setting->loadStampDay($this->carbon->)
+
 		$html = [];
 		$html[] = '<div class="calendar">';
 		$html[] = '<table class="table">';
@@ -43,22 +46,17 @@ class CalendarView {
 		//週の出力
 		foreach($weeks as $week){
 		$html[] = '<tr class="'.$week->getClassName().'">';
+		//$days = $week->getDays();
 		$days = $week->getDays();
-		$stamps = $week->getStamps();
+		//$stamps = $week->getStamps();
 		
 		//日の出力
 		foreach($days as $day){
-		$html[] = '<td class="'.$day->getClassName().'">';
+				$test = $day->carbon->format("j");
+		$html[] = '<td class="'.$day->getClassName($test).'">';
 		$html[] = $day->render();
 		$html[] = '</td>';
 		}
-
-		foreach($stamps as $stamp){
-		$html[] = '<td>';
-		$html[] = $stamp->stamp_render();
-		$html[] = '</td>';
-		}
-
 
 		$html[] = '</tr>';
 		}
